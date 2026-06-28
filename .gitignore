@@ -1,0 +1,23 @@
+# Ignore large dataset files
+*.h5
+*.zip
+*.pkl
+deepCDG/PPI_data/CPDB_multiomics.h5
+deepCDG-eval/PPI_data/CPDB_multiomics.h5
+
+# Ignore python virtual environments
+env/
+venv/
+ENV/
+
+# Ignore compiled python code and cache folders
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local config files
+.vscode/
+.idea/
+*.log
+.system_generated/
