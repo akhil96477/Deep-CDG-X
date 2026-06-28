@@ -25,7 +25,11 @@ Despite its strengths, the original `deepCDG` model exhibits several major bottl
 3. **Severe Class Imbalance**: Driver genes are extremely rare compared to passenger genes, leading to gradient collapse under standard Binary Cross Entropy (BCE) loss.
 4. **Lack of Calibrated Predictions and Causal Interpretability**: Predicts binary driver probabilities without conveying clinical confidence or epistemic uncertainty. Furthermore, post-hoc explainers like GNNExplainer [40] output heuristic masks rather than causal explanations.
 
+![proposed_solution_1.png](proposed_solution_1.png)
+
 To resolve these bottlenecks, we propose **deepCDG-X**. First, deepCDG-X utilizes all 64 columns of `CPDB_multiomics.h5` to capture copy number alterations, and projects them using a Multi-Head Cross-Attention (MHCA) Transformer block. Second, we implement a Stage-Conditioned Dynamic PPI Gating network to adjust GCN propagation weights based on tumor stage. Third, we introduce self-supervised Graph Contrastive Learning (GCL) pretraining combined with a Focal Loss objective to resolve class imbalance. Fourth, we implement Monte Carlo Dropout for calibrated uncertainty quantification and Counterfactual GNNExplainer (CF-GNNExplainer) to identify the minimal network modifications that flip predictions. Fifth, we use Low-Rank Adaptation (LoRA) adapters for multi-task pan-cancer fine-tuning.
+
+![proposed_solution_2.png](proposed_solution_2.png)
 
 ---
 
@@ -274,7 +278,7 @@ Using `CFGNNExplainer` on the top predicted driver gene `STIM1` (baseline probab
 ### 5.4 Biological Enrichment Analysis
 Gene Ontology (GO) and KEGG pathway enrichment analyses on the top predicted genes confirmed that deepCDG-X predictions are highly enriched in cancer-related terms, such as cell cycle checkpoints, chromatin modification, and the p53 signaling pathway.
 
-![Figure 3: deepCDG vs deepCDG-X 5-Fold Benchmark Chart](deepcdg_vs_deepcdgx_comparison.png)
+![deepcdg_vs_deepcdgx_comparison.png](deepcdg_vs_deepcdgx_comparison.png)
 
 ---
 
